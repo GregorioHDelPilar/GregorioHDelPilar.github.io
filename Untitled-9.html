@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Space Product Promo</title>
+
+<style>
+
+/* 🌌 SMOOTH SCROLL */
+html{
+    scroll-behavior:smooth;
+}
+
+/* 🌌 BODY */
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    overflow-x:hidden;
+    color:white;
+
+    background:
+    radial-gradient(circle at top, #1b2735 0%, #090a0f 70%);
+
+    min-height:100vh;
+}
+
+/* ✨ STARS */
+.stars{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+
+    background:
+    transparent url("https://www.transparenttextures.com/patterns/stardust.png");
+
+    z-index:-5;
+
+    animation:moveStars 80s linear infinite;
+}
+
+@keyframes moveStars{
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(-300px);
+    }
+}
+
+/* 🌌 AURORA */
+.aurora{
+    position:fixed;
+
+    width:150%;
+    height:150%;
+
+    background:
+    radial-gradient(circle, rgba(0,255,255,0.08), transparent 60%),
+    radial-gradient(circle, rgba(140,0,255,0.08), transparent 60%),
+    radial-gradient(circle, rgba(0,100,255,0.08), transparent 60%);
+
+    filter:blur(80px);
+
+    animation:auroraMove 20s infinite alternate ease-in-out;
+
+    z-index:-4;
+}
+
+@keyframes auroraMove{
+
+    0%{
+        transform:translate(-10%,-10%);
+    }
+
+    100%{
+        transform:translate(10%,10%);
+    }
+}
+
+/* 🪐 PLANETS */
+.planet{
+    position:fixed;
+
+    border-radius:50%;
+
+    z-index:-3;
+
+    animation:floatPlanet linear infinite;
+}
+
+@keyframes floatPlanet{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(20px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+/* ☄️ SHOOTING STAR */
+.shooting-star{
+    position:fixed;
+
+    width:2px;
+    height:120px;
+
+    background:linear-gradient(white, transparent);
+
+    transform:rotate(45deg);
+
+    opacity:0.7;
+
+    animation:shoot 6s linear infinite;
+
+    z-index:-2;
+}
+
+@keyframes shoot{
+
+    0%{
+        top:-20%;
+        left:120%;
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    100%{
+        top:120%;
+        left:-20%;
+        opacity:0;
+    }
+}
+
+/* 🌟 NAVBAR */
+.navbar{
+    position:sticky;
+    top:0;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:15px 40px;
+
+    backdrop-filter:blur(14px);
+
+    background:rgba(255,255,255,0.05);
+
+    border-bottom:1px solid rgba(255,255,255,0.1);
+
+    z-index:999;
+}
+
+/* ✨ LOGO */
+.logo{
+    font-size:28px;
+    font-weight:bold;
+
+    text-shadow:
+    0 0 10px white,
+    0 0 20px cyan;
+}
+
+/* 🔗 NAV LINKS */
+.nav-links{
+    list-style:none;
+    display:flex;
+    gap:30px;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+
+    font-size:18px;
+
+    transition:0.3s;
+}
+
+.nav-links a:hover{
+
+    color:#7df9ff;
+
+    text-shadow:
+    0 0 10px #7df9ff,
+    0 0 20px #7df9ff;
+}
+
+/* 🌟 HERO */
+.hero{
+    text-align:center;
+    padding:100px 20px;
+}
+
+.hero h1{
+    font-size:80px;
+
+    text-shadow:
+    0 0 20px white,
+    0 0 40px #7df9ff;
+}
+
+.subtitle{
+    font-size:24px;
+    opacity:0.8;
+}
+
+/* 📦 SECTION */
+.section{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:80px;
+
+    padding:120px 10%;
+
+    opacity:0;
+
+    transform:translateY(80px);
+
+    transition:1s;
+}
+
+.section.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* 🖼 IMAGE */
+.section img{
+    width:340px;
+
+    border-radius:25px;
+
+    box-shadow:
+    0 0 30px rgba(125,249,255,0.3),
+    0 0 60px rgba(125,249,255,0.2);
+
+    transform:translateX(150px);
+
+    opacity:0;
+
+    transition:1s;
+}
+
+.section.show img{
+    transform:translateX(0);
+    opacity:1;
+}
+
+/* 📝 TEXT */
+.text{
+    max-width:500px;
+
+    transform:translateX(-150px);
+
+    opacity:0;
+
+    transition:1s;
+}
+
+.section.show .text{
+    transform:translateX(0);
+    opacity:1;
+}
+
+.text h2{
+    font-size:42px;
+
+    margin-bottom:20px;
+
+    text-shadow:
+    0 0 10px #7df9ff;
+}
+
+.text p{
+    font-size:21px;
+
+    line-height:1.7;
+
+    opacity:0.85;
+}
+
+/* ⌨️ TYPING EFFECT */
+.typing{
+    border-right:3px solid white;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    width:0;
+}
+
+/* 💖 ABOUT US PAGE */
+.about-page{
+    padding:120px 10%;
+    text-align:center;
+}
+
+.about-page h2{
+    font-size:60px;
+
+    text-shadow:
+    0 0 20px #7df9ff;
+}
+
+.about-card{
+    margin-top:60px;
+
+    background:rgba(255,255,255,0.05);
+
+    border:1px solid rgba(255,255,255,0.1);
+
+    backdrop-filter:blur(10px);
+
+    border-radius:30px;
+
+    padding:50px;
+
+    box-shadow:
+    0 0 30px rgba(125,249,255,0.1);
+}
+
+/* ✨ GLOW TEXT */
+.glow{
+    animation:glowPulse 3s infinite alternate;
+}
+
+@keyframes glowPulse{
+
+    from{
+        text-shadow:
+        0 0 10px #7df9ff;
+    }
+
+    to{
+        text-shadow:
+        0 0 20px #7df9ff,
+        0 0 40px #b26bff;
+    }
+}
+
+/* 🔢 COUNTER */
+.counter{
+    text-align:center;
+
+    font-size:70px;
+
+    margin-top:100px;
+
+    text-shadow:
+    0 0 20px #7df9ff,
+    0 0 40px #7df9ff;
+}
+
+.counter-text{
+    text-align:center;
+
+    font-size:26px;
+
+    margin-top:10px;
+
+    opacity:0.9;
+}
+
+/* 🛒 BUTTON */
+.buy-btn{
+    display:block;
+
+    margin:70px auto;
+
+    padding:20px 60px;
+
+    border:none;
+
+    border-radius:50px;
+
+    font-size:26px;
+
+    cursor:pointer;
+
+    background:linear-gradient(
+    90deg,
+    #7df9ff,
+    #b26bff
+    );
+
+    color:white;
+
+    transition:0.3s;
+
+    box-shadow:
+    0 0 20px rgba(125,249,255,0.5);
+}
+
+.buy-btn:hover{
+
+    transform:scale(1.1);
+
+    box-shadow:
+    0 0 30px #7df9ff,
+    0 0 60px #b26bff;
+}
+
+.buy-btn.clicked{
+    animation:bounceGlow 0.7s;
+}
+
+@keyframes bounceGlow{
+
+    0%{
+        transform:scale(1);
+    }
+
+    30%{
+        transform:scale(1.25);
+
+        box-shadow:
+        0 0 40px #7df9ff,
+        0 0 80px #b26bff;
+    }
+
+    60%{
+        transform:scale(0.9);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ✨ SPACE BACKGROUND -->
+<div class="stars"></div>
+<div class="aurora"></div>
+<div class="shooting-star"></div>
+
+<!-- 🪐 PLANETS -->
+<div class="planet"
+style="
+width:220px;
+height:220px;
+background:#5b86e5;
+top:10%;
+left:80%;
+box-shadow:0 0 80px #5b86e5;
+animation-duration:14s;
+">
+</div>
+
+<div class="planet"
+style="
+width:140px;
+height:140px;
+background:#ff9966;
+top:60%;
+left:5%;
+box-shadow:0 0 60px #ff9966;
+animation-duration:18s;
+">
+</div>
+
+<!-- 🌟 NAVBAR -->
+<nav class="navbar">
+
+    <div class="logo">
+        ✨ product lol
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="#benefit1">Benefits</a></li>
+        <li><a href="#benefit2">Features</a></li>
+        <li><a href="#benefit3">Quality</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#buy">Buy</a></li>
+    </ul>
+
+</nav>
+
+<!-- 🌟 HERO -->
+<div class="hero">
+
+    <h1 class="glow">
+        ✨ product lol ✨
+    </h1>
+
+    <p class="subtitle">
+        A futuristic experience beyond imagination 🚀
+    </p>
+
+</div>
+
+<!-- SECTION 1 -->
+<div class="section" id="benefit1">
+
+    <img src="https://picsum.photos/340/240?random=1">
+
+    <div class="text">
+
+        <h2 class="typing glow">
+            🔥 Amazing Performance
+        </h2>
+
+        <p>
+        Lightning-fast results that make everything easier and smoother.
+        Designed for people who want speed and elegance together.
+        </p>
+
+    </div>
+
+</div>
+
+<!-- SECTION 2 -->
+<div class="section" id="benefit2">
+
+    <img src="https://picsum.photos/340/240?random=2">
+
+    <div class="text">
+
+        <h2 class="typing glow">
+            ⚡ Easy To Use
+        </h2>
+
+        <p>
+        Beginner-friendly while still feeling powerful and premium.
+        Everything works beautifully with smooth interactions.
+        </p>
+
+    </div>
+
+</div>
+
+<!-- SECTION 3 -->
+<div class="section" id="benefit3">
+
+    <img src="https://picsum.photos/340/240?random=3">
+
+    <div class="text">
+
+        <h2 class="typing glow">
+            💎 Premium Quality
+        </h2>
+
+        <p>
+        Crafted with care, stunning visuals, and futuristic design
+        that feels alive the moment you scroll.
+        </p>
+
+    </div>
+
+</div>
+
+<!-- 💖 ABOUT US -->
+<div class="about-page" id="about">
+
+    <h2 class="glow">
+        🌌 About Us
+    </h2>
+
+    <div class="about-card">
+
+        <img
+        src="https://picsum.photos/600/300?random=4"
+        style="
+        width:100%;
+        border-radius:20px;
+        margin-bottom:30px;
+        box-shadow:0 0 30px rgba(125,249,255,0.3);
+        ">
+
+        <p style="font-size:24px; line-height:1.8;" class="glow">
+
+        We started with one mission:
+        to create something futuristic, beautiful, and unforgettable.
+
+        Our team believes technology should not only work —
+        it should feel magical ✨
+
+        Every interaction, every animation, and every detail
+        was designed to create an experience that feels alive.
+
+        Welcome to the future 🚀
+
+        </p>
+
+    </div>
+
+</div>
+
+<!-- 🔢 COUNTER -->
+<div class="counter" id="counter">
+0
+</div>
+
+<p class="counter-text">
+People love this product 💖
+</p>
+
+<!-- 🛒 BUTTON -->
+<button class="buy-btn" id="buy" onclick="buyClick(this)">
+🛒 Buy Now
+</button>
+
+<script>
+
+/* 🌟 SCROLL ANIMATION */
+const sections = document.querySelectorAll('.section');
+
+window.addEventListener('scroll', () => {
+
+    sections.forEach(sec => {
+
+        let top = sec.getBoundingClientRect().top;
+
+        if(top < window.innerHeight - 100){
+
+            sec.classList.add('show');
+
+            /* ⌨️ TYPING EFFECT */
+            let typing = sec.querySelector('.typing');
+
+            if(!typing.classList.contains('done')){
+
+                let text = typing.innerText;
+
+                typing.innerText = '';
+
+                typing.classList.add('done');
+
+                let i = 0;
+
+                let interval = setInterval(() => {
+
+                    typing.innerText += text[i];
+
+                    i++;
+
+                    if(i >= text.length){
+                        clearInterval(interval);
+                    }
+
+                },70);
+            }
+        }
+    });
+});
+
+/* 🔢 RANDOM COUNTER */
+let counter = document.getElementById("counter");
+
+let current = 0;
+let target = 5000;
+
+let interval = setInterval(() => {
+
+    current += Math.floor(Math.random() * 200);
+
+    if(current >= target){
+
+        current = target;
+
+        clearInterval(interval);
+    }
+
+    counter.innerText = current;
+
+},80);
+
+/* 🛒 BUTTON EFFECT */
+function buyClick(btn){
+
+    btn.classList.add("clicked");
+
+    setTimeout(() => {
+
+        btn.classList.remove("clicked");
+
+    },700);
+}
+
+</script>
+
+</body>
+</html>
